@@ -29,7 +29,7 @@ def create_user(user: UserSchema):
     return user_with_id
 
 
-@app.get('/users/', status_code=HTTPStatus.CREATED, response_model=UserList)
+@app.get('/users/', response_model=UserList)
 def read_users():
     return {'users': database}
 
@@ -45,6 +45,7 @@ def update_user(user_id: int, user: UserSchema):
     database[user_id - 1] = user_with_id
 
     return user_with_id
+
 
 @app.delete('/users/{user_id}', response_model=Message)
 def delete_user(user_id: int):
